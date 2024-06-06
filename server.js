@@ -7,17 +7,9 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const dbUrl = new URL(process.env.DATABASE_URL);
-
 const db = knex({
     client: 'pg',
-    connection: {
-        host: process.env.DB_HOST,
-        port: 5432,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: dbUrl.pathname.substr(1)
-    }
+    connection: process.env.DATABASE_URL
 });
 
 db.select('*').from('users').then(data => {
