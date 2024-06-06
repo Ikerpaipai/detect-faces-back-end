@@ -3,15 +3,18 @@ import bodyParser from 'body-parser';
 import bcrypt from 'bcryptjs';
 import cors from 'cors';
 import knex from 'knex';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const db = knex({
     client: 'pg',
     connection: {
-        host: '127.0.0.1',
+        host: process.env.DB_HOST,
         port: 5432,
-        user: 'postgres',
-        password: 'test',
-        database: 'smartbrain'
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME
     }
 });
 
